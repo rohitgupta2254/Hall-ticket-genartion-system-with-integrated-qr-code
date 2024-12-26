@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="admin add subjects.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <h1 class="title">Hall Ticket Generation System with Integrated QR Code</h1>
+            <p class="tagline">KJ SOMAIYA INSTITUTE OF TECHNOLOGY</p>
+            <a href="admin home page.html">Home</a>
+            <a href="admin.php">Student Approval</a>
+            <a href="admin_details.php">Student Details</a>
+            <a href="admin add subjects.html">Add Subjects</a>
+            <a href="admin_hallticket_requests.php">Hall Ticket Approval</a>
+            <span class="btn">
+                <img src="3.jpeg/Screenshot_2024-03-05_at_7.47.56_PM-removebg-preview copy.png" alt="Logo" class="logo">
+            </span>
+        </div>
+    </nav>
+    <div class="form-container">
+        <h2>Add Subjects</h2>
+       
+        <form id="subjectForm" action="add_subject.php" method="post">
+           
+            <label for="year1">Year of Study:</label>
+            <select name="year1" id="year1" required>
+                <option value="">Select Year</option>
+                <option value="1">1st Year</option>
+                <option value="2">2nd Year</option>
+                <option value="3">3rd Year</option>
+                <option value="4">4th Year</option>
+            </select>
+
+            <label for="department1">Department:</label>
+            <select name="department1" id="department1" required>
+                <option value="">Select Department</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Electrical Engineering">Electrical Engineering</option>
+            </select>
+
+            <label for="semester1">Semester:</label>
+            <select name="semester1" id="semester1" required>
+                <option value="">Select Semester</option>
+                <option value="1">1st Semester</option>
+                <option value="2">2nd Semester</option>
+                <option value="3">3rd Semester</option>
+                <option value="4">4th Semester</option>
+                <option value="5">5th Semester</option>
+                <option value="6">6th Semester</option>
+                <option value="7">7th Semester</option>
+                <option value="8">8th Semester</option>
+            </select>
+
+           
+            <div class="subject-container">
+                <label for="subject_code1">Subject Code 1:</label>
+                <select name="subject_code[]" id="subject_code1" required>
+                    <option value="">Select Subject Code</option>
+                </select>
+
+                <label for="subject_name1">Subject Name:</label>
+                <select name="subject_name[]" id="subject_name1" required>
+                    <option value="">Select Subject Name</option>
+                </select>
+
+                <label for="date">Date of Exam:</label>
+                <input type="date" name="date[]" required>
+
+                <label for="start_time">Start Time:</label>
+                <input type="time" name="start_time[]" required>
+
+                <label for="end_time">End Time:</label>
+                <input type="time" name="end_time[]" required>
+
+                <label for="day">Day of Exam:</label>
+                <select name="day[]" required>
+                    <option value="">Select Day</option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
+                </select>
+            </div>
+            <div class="button-container">
+                <button id="addSubjectButton" type="button">Add Another Subject</button>
+                <button id="backButton" type="button">Back</button>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p>Developed by: Yash Modi, Pratham Kotecha, Rohit Gupta, and Vansh Makwana under the Guidance of Prof. Pradnya Bhangle.</p>
+        </div>
+    </div>
+    
+
+    <script>
+        
+        const subjectData = {
+           
+            "1_Computer_Science_1": [
+                { code: "CS101", name: "Introduction to Computer Science" },
+                { code: "CS102", name: "Programming Fundamentals" },
+                { code: "CS103", name: "Mathematics for Computer Science" },
+                { code: "CS104", name: "Basic Electronics" },
+                { code: "CS105", name: "Engineering Graphics" },
+                
+            ],
+            "1_Computer_Science_2": [
+                { code: "CS201", name: "Data Structures and Algorithms" },
+                { code: "CS202", name: "Discrete Mathematics" },
+                { code: "CS203", name: "Digital Logic and Design" },
+                { code: "CS204", name: "Computer Organization and Architecture" },
+                { code: "CS205", name: "Environmental Studies" },
+                
+            ],
+           
+
+           
+            "2_Computer_Science_3": [
+                { code: "CS301", name: "Operating Systems" },
+                { code: "CS302", name: "Database Management Systems" },
+                { code: "CS303", name: "Computer Networks" },
+                { code: "CS304", name: "Theory of Computation" },
+                { code: "CS305", name: "Software Engineering Fundamentals" },
+               
+            ],
+            "2_Computer_Science_4": [
+                { code: "CS401", name: "Web Technology" },
+                { code: "CS402", name: "Object-Oriented Programming" },
+                { code: "CS403", name: "Algorithm Design and Analysis" },
+                { code: "CS404", name: "Principles of Compiler Design" },
+                { code: "CS405", name: "Operating System Internals" },
+                
+            ],
+            
+            "3_Computer_Science_5": [
+                { code: "CS501", name: "Computer Graphics" },
+                { code: "CS502", name: "Artificial Intelligence" },
+                { code: "CS503", name: "Machine Learning" },
+                { code: "CS504", name: "Computer Architecture" },
+                { code: "CS505", name: "Software Testing and Quality Assurance" },
+                
+            ],
+            "3_Computer_Science_6": [
+                { code: "CS601", name: "Information Security" },
+                { code: "CS602", name: "Cloud Computing" },
+                { code: "CS603", name: "Data Mining and Warehousing" },
+                { code: "CS604", name: "Parallel and Distributed Computing" },
+                { code: "CS605", name: "Mobile Computing" },
+                
+            ],
+   
+            "4_Computer_Science_7": [
+                { code: "CS701", name: "Big Data Analytics" },
+                { code: "CS702", name: "Internet of Things" },
+                { code: "CS703", name: "Blockchain Technology" },
+                { code: "CS704", name: "Cybersecurity" },
+                { code: "CS705", name: "Advanced Topics in Computer Science" },
+              
+            ],
+            "4_Computer_Science_8": [
+                { code: "CS801", name: "Software Project Management" },
+                { code: "CS802", name: "Digital Image Processing" },
+                { code: "CS803", name: "Natural Language Processing" },
+                { code: "CS804", name: "Artificial Intelligence Applications" },
+                { code: "CS805", name: "Capstone Project" },
+               
+            ],
+            
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const addButton = document.getElementById('addSubjectButton');
+            const backButton = document.getElementById('backButton');
+            const form = document.getElementById('subjectForm');
+
+            addButton.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                
+                const newSubjectFields = `
+                    <div class="subject-container">
+                        <label for="subject_code">Subject Code:</label>
+                        <select name="subject_code[]" required>
+                            <option value="">Select Subject Code</option>
+                        </select>
+
+                        <label for="subject_name">Subject Name:</label>
+                        <select name="subject_name[]" required>
+                            <option value="">Select Subject Name</option>
+                        </select>
+
+                        <label for="date">Date of Exam:</label>
+                        <input type="date" name="date[]" required>
+
+                        <label for="start_time">Start Time:</label>
+                        <input type="time" name="start_time[]" required>
+
+                        <label for="end_time">End Time:</label>
+                        <input type="time" name="end_time[]" required>
+
+                        <label for="day">Day of Exam:</label>
+                        <select name="day[]" required>
+                            <option value="">Select Day</option>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                        </select>
+                    </div>`;
+
+                const subjectContainer = document.createElement('div');
+                subjectContainer.classList.add('subject-container');
+                subjectContainer.innerHTML = newSubjectFields;
+
+                form.insertBefore(subjectContainer, form.lastElementChild);
+                populateSubjectOptions();
+            });
+
+            backButton.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                const subjectContainers = document.querySelectorAll('.subject-container');
+
+                if (subjectContainers.length > 1) {
+                    subjectContainers[subjectContainers.length - 1].remove();
+                }
+            });
+
+            form.addEventListener('change', function(event) {
+                const target = event.target;
+
+                if (target.tagName === 'SELECT' && (target.id === 'year1' || target.id === 'department1' || target.id === 'semester1')) {
+                    populateSubjectOptions();
+                }
+            });
+
+            function populateSubjectOptions() {
+                const year = document.getElementById('year1').value;
+                const department = document.getElementById('department1').value;
+                const semester = document.getElementById('semester1').value;
+
+                const subjects = subjectData[`${year}_Computer_Science_${semester}`];
+
+                const subjectContainers = document.querySelectorAll('.subject-container');
+
+                subjectContainers.forEach((container, index) => {
+                    const subjectCodeSelect = container.querySelector(`select[name="subject_code[]"]`);
+                    const subjectNameSelect = container.querySelector(`select[name="subject_name[]"]`);
+
+                   
+                    subjectCodeSelect.innerHTML = '<option value="">Select Subject Code</option>';
+                    subjectNameSelect.innerHTML = '<option value="">Select Subject Name</option>';
+
+                   
+                    subjects.forEach(subject => {
+                        const optionCode = document.createElement('option');
+                        optionCode.value = subject.code;
+                        optionCode.textContent = subject.code;
+                        subjectCodeSelect.appendChild(optionCode);
+
+                        const optionName = document.createElement('option');
+                        optionName.value = subject.name;
+                        optionName.textContent = subject.name;
+                        subjectNameSelect.appendChild(optionName);
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="studentlogin2.css">
+</head>
+<script>
+    function validateForm() {
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+
+        if (username.trim() === "") {
+            alert('Please enter a username');
+            return false;
+        }
+
+        if (password.trim() === "") {
+            alert('Please enter a password');
+            return false;
+        }
+
+        if (password.length < 8) {
+            alert('Password must be at least 8 characters long');
+            return false;
+        }
+
+        return true; 
+    }
+</script>
+<body>
+    <nav>
+        <div class="container">
+            <h1 class="title">Hall Ticket Generation System with Integrated QR Code</h1>
+            <p class="tagline">KJ SOMAIYA INSTITUTE OF TECHNOLOGY</p>
+            <a href="Homepage.html">Home</a>
+            <a href="#">About us</a>
+            <a href="#">Admission</a>
+            <a href="#">Gallery</a>
+            <a href="loginportal.html">Login Portal</a>
+            <span class="btn">
+                <img src="3.jpeg/Screenshot_2024-03-05_at_7.47.56_PM-removebg-preview copy.png" alt="Logo" class="logo">
+            </span>
+        </div>
+    </nav>
+    <div class="login-portal">
+        <div class="login-container">
+            <h2> Student Login</h2>
+            <form action="studentlogin.php" method="post" onsubmit="return validateForm()">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <i class='bx bxs-user'></i>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <div class="remember-forgot">
+                    <label><input type="checkbox">Remember me</label>
+                </div>
+                <button type="submit">Login</button>
+                <div class="register-link">
+                    <p>Don't have an account? <a href="register2.html">Register</a></p>
+                    <a href="#">Forgot password</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="container">
+            <p>Developed by: Yash Modi, Pratham Kotecha, Rohit Gupta, and Vansh Makwana under the Guidance of Prof. Pradnya Bhangle.</p>
+        </div>
+    </div>
+    
+</body>
+</html>

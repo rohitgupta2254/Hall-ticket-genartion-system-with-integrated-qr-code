@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="hallticketrequest.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <h1 class="title">Hall Ticket Generation System with Integrated QR Code</h1>
+            <p class="tagline">KJ SOMAIYA INSTITUTE OF TECHNOLOGY</p>
+            <a href="studentloginhomepage.html">Home</a>
+            <a href="hallticketreq2.html">Hall Ticket Request</a>
+            <a href="download_hallticket.php">Download hall ticket</a>
+            <span class="btn">
+                <img src="3.jpeg/Screenshot_2024-03-05_at_7.47.56_PM-removebg-preview copy.png" alt="Logo" class="logo">
+            </span>
+        </div>
+    </nav>
+    <div class="registration-form">
+        <h2>Request Hall Ticket</h2>
+        <form id="hallTicketForm" method="post" action="hallticketrequest.php">
+            <label for="studentId">Student ID:</label>
+            <input type="text" id="studentId" name="studentId" required>
+
+            <label for="year">Year:</label>
+            <select id="year" name="year" required>
+                <option value="">Select Year</option>
+                <option value="1">First Year</option>
+                <option value="2">Second Year</option>
+                <option value="3">Third Year</option>
+                <option value="4">Fourth Year</option>
+            </select>
+
+            <label for="department">Department:</label>
+            <select id="department" name="department" required>
+                <option value="">Select Department</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Electrical Engineering">Electrical Engineering</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Civil Engineering">Civil Engineering</option>
+            </select>
+
+            <label for="semester">Semester:</label>
+            <select id="semester" name="semester" required>
+                <option value="">Select Semester</option>
+                <option value="1">1st Semester</option>
+                <option value="2">2nd Semester</option>
+                <option value="3">3rd Semester</option>
+                <option value="4">4th Semester</option>
+                <option value="5">5th Semester</option>
+                <option value="6">6th Semester</option>
+                <option value="7">7th Semester</option>
+                <option value="8">8th Semester</option>
+            </select>
+
+            <label for="rollNumber">Roll Number:</label>
+            <input type="text" id="rollNumber" name="rollNumber" required>
+
+            <label>Fee Status:</label>
+            <div class="fee-status">
+                <input type="radio" id="feeStatusYes" name="feeStatus" value="yes">
+                <label for="feeStatusYes">Yes</label>
+                <input type="radio" id="feeStatusNo" name="feeStatus" value="no">
+                <label for="feeStatusNo">No</label>
+                <div id="receiptNumberContainer" style="display: none;">
+                    <label for="receiptNumber">Receipt Number:</label>
+                    <input type="text" id="receiptNumber" name="receiptNumber">
+                </div>
+            </div>
+
+            <button type="submit" id="requestButton">Request Hall Ticket</button>
+            <p id="errorMessage" style="display: none;">Please contact the admin to request the hall ticket.</p>
+        </form>
+    </div>
+    <div class="footer">
+        <div class="container">
+            <p>Developed by: Yash Modi, Pratham Kotecha, Rohit Gupta, and Vansh Makwana under the Guidance of Prof. Pradnya Bhangle.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("hallTicketForm").addEventListener("submit", function(event) {
+            var feeStatusYes = document.getElementById("feeStatusYes");
+            var receiptNumberInput = document.getElementById("receiptNumber");
+            var requestButton = document.getElementById("requestButton");
+            var errorMessage = document.getElementById("errorMessage");
+
+            if (feeStatusYes.checked) {
+                if (receiptNumberInput.value.trim() === "") {
+                    alert("Please provide the fee receipt number.");
+                    event.preventDefault(); 
+                }
+            } else {
+                errorMessage.style.display = "block";
+                requestButton.disabled = true;
+                event.preventDefault(); 
+            }
+        });
+        
+        document.querySelectorAll('input[name="feeStatus"]').forEach(function(radio) {
+            radio.addEventListener("change", function() {
+                var receiptNumberContainer = document.getElementById("receiptNumberContainer");
+                if (this.value === "yes") {
+                    receiptNumberContainer.style.display = "block";
+                } else {
+                    receiptNumberContainer.style.display = "none";
+                }
+            });
+        });
+    </script>
+</body>
+</html>

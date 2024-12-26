@@ -1,0 +1,176 @@
+* {
+    margin:0px;
+    padding:0px;
+}
+html, body {
+    font-family: Roboto, sans-serif, arial;
+    font-size: 14px;
+    color: #242424;
+    box-sizing: border-box;
+    background-image: url(3.jpeg/back.jpg);
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.tagline {
+    font-size: 16px;
+    color: white;
+    margin-top: 5px;
+}
+.title {
+    text-align: center;
+    color: black;
+}
+
+nav {
+    background-color: #ff5722;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    position: relative;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+    position: absolute;
+    left: 20px; 
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+nav .btn {
+    float: right;
+}
+
+.container {
+    max-width: 1200px; 
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+h1 {
+    margin: 0;
+}
+
+form {
+    display: grid;
+    gap: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+.registration-form {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 480px) {
+    .registration-form {
+        width: 90%;
+        margin: 50px auto;
+    }
+}
+
+
+.tagline {
+    font-size: 16px;
+    color: white;
+    margin-top: 5px;
+}
+.title {
+    text-align: center;
+    color: black;
+}
+
+.registration-form {
+    max-width: 400px;
+    margin: 50px auto;
+    opacity: 1;
+    transition: opacity 0.8s ease-out;
+}
+
+.registration-form.hide {
+    opacity: 0;
+    transition: opacity 0.8s ease-in;
+}
+
+.success-message {
+    display: none;
+    opacity: 0;
+    transform: translateY(-20px);
+    text-align: center;
+    animation: fadeInUp 1s ease-out 0.8s forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.footer {
+    background-color: #1f2836;
+    padding: 20px 0; 
+    color: #fff;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 14px; 
+    z-index: 999; 
+}
+.footer p {
+    margin: 10px;
+    font-style: italic;
+}
+
+.footer p span {
+    font-weight: bold;
+}
+
+.footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
